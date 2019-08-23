@@ -21,7 +21,7 @@ class Instructor extends Person {
         return `Today we are learning about ${subject}.`
     }
     grade(student, subject) {
-        return `${student.name} receives a perfect score on ${subject}.`
+        return `${student} receives a perfect score on ${subject}.`
     }
 }
 
@@ -33,27 +33,35 @@ class Student extends Person {
         this.favSubjects = studentAttr.favSubjects
     }
     listsSubjects() {
-        this.favSubjects.map(studentAttr => console.log(studentAttr));
-    };
+        return this.favSubjects;
+    }
+    // for (let i = 0; i <this.favSubjects.length; i++){
+    //     console.log(this.favSubjects[i]);
+    // }
+    //     this.favSubjects.forEach(subject => {
+    //         console.log(subject)
+    //     })
+    // }
+
     PRAssignment(subject) {
         return `${this.name} has submitted a PR for ${subject}.`;
-    };
-    sprintChallenge() {
-        return `${this.name} has begun sprint challenge on ${subject}.`;
-    };
+    }
+    sprintChallenge(subject) {
+        return `${this.name} has begun a sprint challenge on ${subject}.`;
+    }
 };
 
 class ProjectManager extends Instructor {
     constructor(pmAttr) {
         super(pmAttr);
-        this.gradClassName = pmAttr.gradClassName;
-        this.favInstructor = pmAttr.favInstructor;
+        this.gradClassName = pmAttr.gradClassName
+        this.favInstructor = pmAttr.favInstructor
     }
     standUp(channel) {
         return `${this.name} announces to ${channel}, @channel standy times!`;
     }
-    debugsCode(student, subject) {
-        return `${this.name} debugs ${student.name}'s code on ${subject}.`
+    debugsCode(name, subject) {
+        return `${name} debugs ${name}'s code on ${subject}.`
     }
 }
 
@@ -79,22 +87,56 @@ const paul = new Instructor({
   });
 
 
+
+
   const andy = new Student({
       name: 'Andy',
       age: 22,
       location: 'Maine',
       previousBackground: 'History',
       className: 'Web23',
-      favSubjects: 'sleeping'
+      favSubjects: ['sleeping', 'JS', 'CSS']
   })
+
+  const shane = new Student({
+    name: 'Shane',
+    age: 24,
+    location: 'CT',
+    previousBackground: 'Police',
+    className: 'Web23',
+    favSubjects: ['JS', 'HTML']
+})
+
+   const melissa = new ProjectManager ({
+    name: 'Melissa',
+    age: 44,
+    location: 'NC',
+    gradClassName: 'CS2',
+    favInstructor: 'Steve'
+   })
+
+   const chad = new ProjectManager ({
+    name: 'Chad',
+    age: 78,
+    location: 'SC',
+    gradClassName: 'Web24',
+    favInstructor: 'Art'
+   })
 
   console.log(andy.speak());
   console.log(andy.PRAssignment('math'));
-  console.log(an)
+  console.log(andy.sprintChallenge('JS'))
+  console.log(andy.listsSubjects());
+
+  console.log(shane.speak());
+  console.log(shane.PRAssignment('Chorus'));
+  console.log(shane.sprintChallenge('JS'))
+  console.log(shane.listsSubjects());
 
 
+  console.log(melissa.speak());
+  console.log(melissa.standUp('Pablo'));
+  console.log(melissa.debugsCode('Max', 'JS'));
 
-
-
-
-  
+  console.log(chad.demo("CSS"));
+  console.log(chad.grade("Max", 'Java'));
